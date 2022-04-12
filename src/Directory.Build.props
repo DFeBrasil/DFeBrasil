@@ -1,0 +1,30 @@
+<Project>
+    <Import Project="..\Directory.Build.props"/>
+
+    <PropertyGroup>
+        <Title>DFeBrasil.NET</Title>
+        <Product>DFeBrasil</Product>
+        <Company>AGIL4 TECNOLOGIA LTDA ME</Company>
+        <Copyright>Copyright © Agil4 Tecnologia 2022</Copyright>
+        <Authors>Agil4 Tecnologia</Authors>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <GenerateDocumentationFile>false</GenerateDocumentationFile>
+        <DebugSymbols>True</DebugSymbols>
+        <NoWarn>$(NoWarn)</NoWarn>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+        <DebugType>embedded</DebugType>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <Description>DFeBrasil fornece pequenos pacotes focados em Documentos Fiscais Brasileiros veja mais em https://github.com/agil4/DFeBrasil</Description>
+        <IsPackable>True</IsPackable>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/agil4/DFeBrasil</RepositoryUrl>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    </PropertyGroup>
+</Project>
