@@ -1,0 +1,76 @@
+name: DFeBrasil
+env:
+  DFEBRASIL_VERSION: '1.0.0'
+on:
+  push:
+    paths:
+      - 'src/**'
+      - 'tests/**'
+      - 'DFeBrasil.sln'
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'tests/**'
+      - 'DFeBrasil.sln'
+  workflow_dispatch:
+
+jobs:
+  compile:
+    name: Compile and Unit Tests
+    timeout-minutes: 10
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Install .NET Core SDK
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '6.0.x'
+
+      - name: Restore NuGet packages
+        working-directory: ./
+        run: dotnet restore
+
+      - name: Build
+        working-directory: ./
+        run: dotnet build -c Release --no-restore
+
+      - name: UnitTests Nfce Danfe
+        run: dotnet test -c Release --logger:"console;verbosity=normal" --no-build
+        working-directory: ./tests/DFeBrasil.Nfce.Danfe.UnitTests
+
+  calc-version:
+    name: Calculate Version
+    runs-on: ubuntu-20.04
+    needs:
+      - compile
+    outputs:
+      version: ${{ steps.v.outputs.version }}
+    steps:
+      - id: v
+        run: |
+          if [ "${{ github.ref }}" = 'refs/heads/main' ]; then
+            echo "::set-output name=version::${DFEBRASIL_VERSION}"
+          else
+            echo "::set-output name=version::${DFEBRASIL_VERSION}-develop.${{ github.run_number }}"
+          fi
+
+  publish:
+    name: Build and Publish NuGets
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    if: (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') && github.repository == 'DFeBrasil/DFeBrasil' && success()
+    needs:
+      - calc-version
+    steps:
+      - name: Version Output Check
+        run: |
+          echo "${{ needs.calc-version.outputs.version }}"
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Install .NET Core SDK
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '6.0.x'
