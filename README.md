@@ -4,4 +4,6 @@ Projeto para ajudar a comunidade e desenvolvedores a integrar seu software com o
 
 Build Status
 -------------
-main | [![DFeBrasil](https://github.com/agil4/DFeBrasil/actions/workflows/dotnet.yml/badge.svg?event=push)](https://github.com/agil4/DFeBrasil/actions/workflows/dotnet.yml)
+| Branch |                                                                                    Status                                                                                    |
+|--------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| main   | [![main](https://github.com/agil4/DFeBrasil/actions/workflows/dotnet.yml/badge.svg?branch=main&event=push)](https://github.com/agil4/DFeBrasil/actions/workflows/dotnet.yml) |
