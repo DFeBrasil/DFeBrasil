@@ -1,6 +1,6 @@
 name: DFeBrasil
 env:
-  DFEBRASIL_VERSION: '1.0.0'
+  DFEBRASIL_VERSION: '1.0.1'
 on:
   push:
     paths:
@@ -79,6 +79,14 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '6.0.x'
+
+      - name: Build & Publish DFeBrasil
+        uses: drusellers/publish-nuget@master
+        with:
+          project-file-path: src/DFeBrasil/DFeBrasil.csproj
+          version: ${{ needs.calc-version.outputs.version }}
+          tag-commit: false
+          nuget-key: ${{secrets.NUGET_TOKEN}}
 
       - name: Build & Publish DFeBrasil.Nfce.Danfe
         uses: drusellers/publish-nuget@master
