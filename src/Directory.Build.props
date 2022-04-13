@@ -6,7 +6,7 @@
         <Product>DFeBrasil</Product>
         <Company>AGIL4 TECNOLOGIA LTDA ME</Company>
         <Copyright>Copyright © Agil4 Tecnologia 2022</Copyright>
-        <Authors>Agil4 Tecnologia</Authors>
+        <Authors>Eliezer Almeida</Authors>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <GenerateDocumentationFile>false</GenerateDocumentationFile>
         <DebugSymbols>True</DebugSymbols>
@@ -19,12 +19,18 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <Description>DFeBrasil fornece pequenos pacotes focados em Documentos Fiscais Brasileiros veja mais em https://github.com/agil4/DFeBrasil</Description>
+        <Description>DFeBrasil fornece pequenos pacotes focados em Documentos Fiscais Brasileiros veja mais em https://github.com/DFeBrasil/DFeBrasil</Description>
         <IsPackable>True</IsPackable>
+        <PackageIcon>dfe-logo-transparent-xs.png</PackageIcon>
         <RepositoryType>git</RepositoryType>
-        <RepositoryUrl>https://github.com/agil4/DFeBrasil</RepositoryUrl>
+        <RepositoryUrl>https://github.com/DFeBrasil/DFeBrasil</RepositoryUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
     </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="..\..\dfe-logo-transparent-xs.png" Pack="true" Visible="false" PackagePath=""/>
+        <None Include="..\..\dfe-logo-sm.png" Pack="true" Visible="false" PackagePath=""/>
+    </ItemGroup>
 </Project>

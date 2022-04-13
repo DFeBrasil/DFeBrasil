@@ -20,5 +20,5 @@
     <ItemGroup>
         <EmbeddedResource Include="Resources\Danfe80.frx"/>
     </ItemGroup>
-
+    
 </Project>
