@@ -11,4 +11,5 @@ Build Status
 
 | Package              |                                                       Version                                                        |
 |----------------------|:--------------------------------------------------------------------------------------------------------------------:|
+| DFeBrasil            |            [![NuGet](https://img.shields.io/nuget/v/DFeBrasil.svg)](https://nuget.org/packages/DFeBrasil)            |
 | DFeBrasil.Nfce.Danfe | [![NuGet](https://img.shields.io/nuget/v/DFeBrasil.Nfce.Danfe.svg)](https://nuget.org/packages/DFeBrasil.Nfce.Danfe) |
