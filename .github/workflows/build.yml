@@ -7,11 +7,15 @@ on:
       - 'src/**'
       - 'tests/**'
       - 'DFeBrasil.sln'
+      - 'Directory.Build.props'
+      - '**/build.yml'
   pull_request:
     paths:
       - 'src/**'
       - 'tests/**'
       - 'DFeBrasil.sln'
+      - 'Directory.Build.props'
+      - '**/build.yml'
   workflow_dispatch:
 
 jobs:
@@ -60,13 +64,14 @@ jobs:
     name: Build and Publish NuGets
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    if: (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop') && github.repository == 'DFeBrasil/DFeBrasil' && success()
+    if: (github.ref == 'refs/heads/main') && github.repository == 'DFeBrasil/DFeBrasil' && success()
     needs:
       - calc-version
     steps:
       - name: Version Output Check
         run: |
           echo "${{ needs.calc-version.outputs.version }}"
+
       - name: Check out code
         uses: actions/checkout@v2
 
