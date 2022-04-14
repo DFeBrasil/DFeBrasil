@@ -6,13 +6,13 @@ namespace DFeBrasil.Nfce.Danfe.UnitTests;
 
 public static class DFeNfceFixture
 {
-    public static DFeNfceDTO ObterViewModel(
+    public static DFeNfceDTO ObterDTO(
         DFeNfceConsumidorDTO? consumidor = null,
         DFeNfceCancelamentoDTO? cancelamento = null,
         bool emContingencia = false
     )
     {
-        var viewModel = new DFeNfceDTO
+        var dto = new DFeNfceDTO
         {
             Chave = "12345678901234567890123456789012345678901234",
             QrCode = "![CDATA[http://homolog.sefaz.go.gov.br/nfeweb/sites/nfce/danfeNFCe" +
@@ -50,26 +50,26 @@ public static class DFeNfceFixture
             }
         };
 
-        return viewModel;
+        return dto;
     }
 
-    public static DFeNfceDTO ObterViewModelCompleta()
+    public static DFeNfceDTO ObterCompleto()
     {
-        return ObterViewModel(new("68492125080", "João Pedro da Silva"));
+        return ObterDTO(new("68492125080", "João Pedro da Silva"));
     }
 
-    public static DFeNfceDTO ObterViewModelCancelada()
+    public static DFeNfceDTO ObterCancelada()
     {
-        return ObterViewModel(cancelamento: new("123456789012345"));
+        return ObterDTO(cancelamento: new("123456789012345"));
     }
 
-    public static DFeNfceDTO CriarViewModel(string type)
+    public static DFeNfceDTO GerarDTO(string type)
     {
         return type switch
         {
-            "Completa" => ObterViewModelCompleta(),
-            "Cancelada" => ObterViewModelCancelada(),
-            _ => ObterViewModel()
+            "Completa" => ObterCompleto(),
+            "Cancelada" => ObterCancelada(),
+            _ => ObterDTO()
         };
     }
 }

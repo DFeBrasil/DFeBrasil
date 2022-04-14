@@ -6,13 +6,13 @@ namespace DFeBrasil.Nfce.Danfe.UnitTests;
 public class ReportFactoryTests
 {
     [Fact]
-    public void CriarDanfe80_ComViewModel_UsaJsonDataSource()
+    public void CriarDanfe80_ComModeloValido_UsaJsonDataSource()
     {
         // Arrange
-        var viewModel = DFeNfceFixture.ObterViewModel();
+        var nfce = DFeNfceFixture.ObterDTO();
 
         // Act
-        using var report = ReportFactory.CriarDanfe80(viewModel);
+        using var report = ReportFactory.CriarDanfe80(nfce);
 
         //
         Assert.IsType<JsonDataSourceConnection>(report.Dictionary.Connections[0]);
@@ -20,27 +20,27 @@ public class ReportFactoryTests
     }
 
     [Fact]
-    public void CriarDanfe80_ComViewModelCompleta_UsaJsonDataSource()
+    public void CriarDanfe80_ComModeloCompleto_UsaJsonDataSource()
     {
         // Arrange
-        var viewModel = DFeNfceFixture.ObterViewModelCompleta();
+        var nfce = DFeNfceFixture.ObterCompleto();
 
         // Act
-        using var report = ReportFactory.CriarDanfe80(viewModel);
+        using var report = ReportFactory.CriarDanfe80(nfce);
 
         //
         Assert.IsType<JsonDataSourceConnection>(report.Dictionary.Connections[0]);
         Assert.Equal("JsonConnection", report.Dictionary.Connections[0].Name);
     }
-    
+
     [Fact]
-    public void CriarDanfe80_ComViewModelCancelada_UsaJsonDataSource()
+    public void CriarDanfe80_ComCancelamento_UsaJsonDataSource()
     {
         // Arrange
-        var viewModel = DFeNfceFixture.ObterViewModelCancelada();
+        var nfce = DFeNfceFixture.ObterCancelada();
 
         // Act
-        using var report = ReportFactory.CriarDanfe80(viewModel);
+        using var report = ReportFactory.CriarDanfe80(nfce);
 
         //
         Assert.IsType<JsonDataSourceConnection>(report.Dictionary.Connections[0]);

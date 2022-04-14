@@ -12,8 +12,8 @@ public class NfceDanfeTests
     public void CriarPDF_RetornaMemoryStream(string type)
     {
         // Arrange
-        var viewModel = DFeNfceFixture.CriarViewModel(type);
-        var danfe = new NfceDanfe(viewModel);
+        var nfce = DFeNfceFixture.GerarDTO(type);
+        var danfe = new NfceDanfe(nfce);
 
         // Act
         using var pdf = danfe.CriarPDF();
@@ -27,14 +27,14 @@ public class NfceDanfeTests
     public void ExportarPDF_ComFileName_CriaArquivoNoDisco()
     {
         // Arrange
-        var viewModel = DFeNfceFixture.ObterViewModelCompleta();
-        var danfe = new NfceDanfe(viewModel);
-        var expectedFileName = Path.GetTempFileName();
+        var nfce = DFeNfceFixture.ObterCompleto();
+        var danfe = new NfceDanfe(nfce);
+        var arquivoEsperado = Path.GetTempFileName();
 
         // Act
-        danfe.ExportarPDF(expectedFileName);
+        danfe.ExportarPDF(arquivoEsperado);
 
         // Aarrange
-        Assert.True(File.Exists(expectedFileName));
+        Assert.True(File.Exists(arquivoEsperado));
     }
 }
