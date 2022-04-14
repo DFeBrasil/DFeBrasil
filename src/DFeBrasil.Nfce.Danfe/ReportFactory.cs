@@ -1,5 +1,5 @@
 using System.Reflection;
-using DFeBrasil.Nfce.Danfe.ViewModel;
+using DFeBrasil.AggregateNfce.DTO;
 using FastReport;
 using FastReport.Data.JsonConnection;
 using Newtonsoft.Json;
@@ -8,11 +8,11 @@ namespace DFeBrasil.Nfce.Danfe;
 
 public static class ReportFactory
 {
-    public static Report CriarDanfe80(NfceViewModel viewModel)
+    public static Report CriarDanfe80(DFeNfceDTO nfce)
     {
         var builder = new JsonDataSourceConnectionStringBuilder
         {
-            Json = JsonConvert.SerializeObject(viewModel)
+            Json = JsonConvert.SerializeObject(nfce)
         };
 
         var report = new Report();

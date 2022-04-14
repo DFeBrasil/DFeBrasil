@@ -12,7 +12,7 @@ public class NfceDanfeTests
     public void CriarPDF_RetornaMemoryStream(string type)
     {
         // Arrange
-        var viewModel = NfceViewModelFixture.CriarViewModel(type);
+        var viewModel = DFeNfceFixture.CriarViewModel(type);
         var danfe = new NfceDanfe(viewModel);
 
         // Act
@@ -27,7 +27,7 @@ public class NfceDanfeTests
     public void ExportarPDF_ComFileName_CriaArquivoNoDisco()
     {
         // Arrange
-        var viewModel = NfceViewModelFixture.ObterViewModelCompleta();
+        var viewModel = DFeNfceFixture.ObterViewModelCompleta();
         var danfe = new NfceDanfe(viewModel);
         var expectedFileName = Path.GetTempFileName();
 

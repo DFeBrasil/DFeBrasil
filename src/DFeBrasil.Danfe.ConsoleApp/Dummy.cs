@@ -1,12 +1,12 @@
-using DFeBrasil.Nfce.Danfe.ViewModel;
+using DFeBrasil.AggregateNfce.DTO;
 
 namespace DFeBrasil.Danfe.ConsoleApp;
 
 public static class NfceDummy
 {
-    public static NfceViewModel CriarViewModel()
+    public static DFeNfceDTO CriarViewModel()
     {
-        var viewModel = new NfceViewModel
+        var viewModel = new DFeNfceDTO
         {
             Chave = "12345678901234567890123456789012345678901234",
             QrCode = "![CDATA[http://homolog.sefaz.go.gov.br/nfeweb/sites/nfce/danfeNFCe" +
@@ -17,14 +17,13 @@ public static class NfceDummy
             TotalDesconto = 30.00M,
             TotalOutros = 150.00M,
             TotalCupom = 200.25M,
-            TotalTributosAproximado = 15M,
-            ProtocoloAutorizacao = "12394219031231",
-            DataAutorizacao = DateTime.UtcNow,
-            EstaEmHomologacao = true,
-            EstaEmContingencia = true,
+            TributosAproximado = 15M,
+            EhHomologacao = true,
+            EhContingencia = true,
             Consumidor = new("21025760000123", "AGIL4 TECNOLOGIA"),
             Cancelamento = new("123456789012345"),
-            Empresa = new(
+            Autorizacao = new(DateTime.UtcNow, "12394219031231"),
+            Emitente = new(
                 "AGIL4 TECNOLOGIA LTDA ME",
                 "AGIL4",
                 "21025760000123",
@@ -32,13 +31,13 @@ public static class NfceDummy
                 "AV. GALDINO A DE MOURA, NOVA VILA, SN - JANDAIA-GO - 75950-000",
                 "64999999999"
             ),
-            Itens = new List<ItemViewModel>
+            Itens = new List<DFeNfceItemDTO>
             {
                 new(1, "FEIJÃO TIO JORGE", 1.00M, 3M, 5.23M),
                 new(2, "ARROZ TIO JORGE", 1.00M, 100M, 1240.23M),
                 new(3, "MACARRÃO TIO JORGE", 1.00M, 1M, 8.23M)
             },
-            Pagamentos = new List<PagamentoViewModel>()
+            Pagamentos = new List<DFeNfcePagamentoDTO>()
             {
                 new("Dinheiro", 25.00M),
                 new("Cartão", 50.00M)

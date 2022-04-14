@@ -10,7 +10,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\DFeBrasil.Nfce.Danfe\DFeBrasil.Nfce.Danfe.csproj"/>
+        <ProjectReference Include="..\DFeBrasil.Nfce.Danfe\DFeBrasil.Nfce.Danfe.csproj" />
     </ItemGroup>
     
 </Project>

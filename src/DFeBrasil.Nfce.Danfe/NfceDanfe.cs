@@ -1,20 +1,20 @@
-using DFeBrasil.Nfce.Danfe.ViewModel;
+using DFeBrasil.AggregateNfce.DTO;
 using FastReport.Export.PdfSimple;
 
 namespace DFeBrasil.Nfce.Danfe;
 
 public class NfceDanfe
 {
-    private readonly NfceViewModel _viewModel;
+    private readonly DFeNfceDTO _nfce;
 
-    public NfceDanfe(NfceViewModel viewModel)
+    public NfceDanfe(DFeNfceDTO nfce)
     {
-        _viewModel = viewModel;
+        _nfce = nfce;
     }
 
     public Stream CriarPDF()
     {
-        using var fr = ReportFactory.CriarDanfe80(_viewModel);
+        using var fr = ReportFactory.CriarDanfe80(_nfce);
 
         var export = new PDFSimpleExport();
         var memoryStream = new MemoryStream();

@@ -1,4 +1,3 @@
-using FastReport;
 using FastReport.Data.JsonConnection;
 using Xunit;
 
@@ -10,7 +9,7 @@ public class ReportFactoryTests
     public void CriarDanfe80_ComViewModel_UsaJsonDataSource()
     {
         // Arrange
-        var viewModel = NfceViewModelFixture.ObterViewModel();
+        var viewModel = DFeNfceFixture.ObterViewModel();
 
         // Act
         using var report = ReportFactory.CriarDanfe80(viewModel);
@@ -24,7 +23,7 @@ public class ReportFactoryTests
     public void CriarDanfe80_ComViewModelCompleta_UsaJsonDataSource()
     {
         // Arrange
-        var viewModel = NfceViewModelFixture.ObterViewModelCompleta();
+        var viewModel = DFeNfceFixture.ObterViewModelCompleta();
 
         // Act
         using var report = ReportFactory.CriarDanfe80(viewModel);
@@ -38,7 +37,7 @@ public class ReportFactoryTests
     public void CriarDanfe80_ComViewModelCancelada_UsaJsonDataSource()
     {
         // Arrange
-        var viewModel = NfceViewModelFixture.ObterViewModelCancelada();
+        var viewModel = DFeNfceFixture.ObterViewModelCancelada();
 
         // Act
         using var report = ReportFactory.CriarDanfe80(viewModel);

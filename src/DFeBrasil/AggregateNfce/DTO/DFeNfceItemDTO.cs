@@ -1,6 +1,6 @@
-namespace DFeBrasil.Nfce.Danfe.ViewModel;
+namespace DFeBrasil.AggregateNfce.DTO;
 
-public record ItemViewModel(
+public record DFeNfceItemDTO(
     int Numero,
     string Descricao,
     decimal Quantidade,

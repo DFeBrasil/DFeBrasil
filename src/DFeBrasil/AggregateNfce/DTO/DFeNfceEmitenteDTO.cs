@@ -1,6 +1,6 @@
-namespace DFeBrasil.Nfce.Danfe.ViewModel;
+namespace DFeBrasil.AggregateNfce.DTO;
 
-public record EmpresaViewModel(
+public record DFeNfceEmitenteDTO(
     string Nome,
     string NomeFantasia,
     string Cnpj,
