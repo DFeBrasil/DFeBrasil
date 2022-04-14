@@ -5,14 +5,41 @@ namespace DFeBrasil.Nfce.Danfe.UnitTests;
 
 public class NfceDanfeTests
 {
-    [Theory]
-    [InlineData("Completa")]
-    [InlineData("Canceleda")]
-    [InlineData("Default")]
-    public void CriarPDF_RetornaMemoryStream(string type)
+    [Fact]
+    public void CriarPDF_ModeloCompleto_RetornaMemoryStream()
     {
         // Arrange
-        var nfce = DFeNfceFixture.GerarDTO(type);
+        var nfce = DFeNfceFixture.GerarDTO("Completa");
+        var danfe = new NfceDanfe(nfce);
+
+        // Act
+        using var pdf = danfe.CriarPDF();
+
+        // Aarrange
+        Assert.IsType<MemoryStream>(pdf);
+        Assert.Equal(0, pdf.Position);
+    }
+    
+    [Fact]
+    public void CriarPDF_ModeloCancelado_RetornaMemoryStream()
+    {
+        // Arrange
+        var nfce = DFeNfceFixture.GerarDTO("Canceleda");
+        var danfe = new NfceDanfe(nfce);
+
+        // Act
+        using var pdf = danfe.CriarPDF();
+
+        // Aarrange
+        Assert.IsType<MemoryStream>(pdf);
+        Assert.Equal(0, pdf.Position);
+    }
+
+    [Fact]
+    public void CriarPDF_ModeloDefault_RetornaMemoryStream()
+    {
+        // Arrange
+        var nfce = DFeNfceFixture.GerarDTO("Default");
         var danfe = new NfceDanfe(nfce);
 
         // Act
