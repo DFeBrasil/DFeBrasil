@@ -1,11 +1,12 @@
 name: DFeBrasil
 env:
-  DFEBRASIL_VERSION: '1.0.1'
+  DFEBRASIL_VERSION: '1.0.2'
 on:
   push:
     paths:
       - 'src/**'
       - 'tests/**'
+      - 'demos/**'
       - 'DFeBrasil.sln'
       - 'Directory.Build.props'
       - '**/build.yml'
@@ -13,6 +14,7 @@ on:
     paths:
       - 'src/**'
       - 'tests/**'
+      - 'demos/**'
       - 'DFeBrasil.sln'
       - 'Directory.Build.props'
       - '**/build.yml'

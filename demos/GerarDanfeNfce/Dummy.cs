@@ -1,12 +1,12 @@
 using DFeBrasil.AggregateNfce.DTO;
 
-namespace DFeBrasil.Danfe.ConsoleApp;
+namespace GerarDanfeNfce;
 
 public static class NfceDummy
 {
-    public static DFeNfceDTO CriarViewModel()
+    public static DFeNfceDTO Gerar()
     {
-        var viewModel = new DFeNfceDTO
+        var dto = new DFeNfceDTO
         {
             Chave = "12345678901234567890123456789012345678901234",
             QrCode = "![CDATA[http://homolog.sefaz.go.gov.br/nfeweb/sites/nfce/danfeNFCe" +
@@ -44,6 +44,6 @@ public static class NfceDummy
             }
         };
 
-        return viewModel;
+        return dto;
     }
 }

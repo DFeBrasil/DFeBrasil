@@ -4,13 +4,12 @@
         <OutputType>Exe</OutputType>
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>disable</Nullable>
-        <IsPackable>false</IsPackable>
-        <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\DFeBrasil.Nfce.Danfe\DFeBrasil.Nfce.Danfe.csproj" />
+      <ProjectReference Include="..\..\src\DFeBrasil.Nfce.Danfe\DFeBrasil.Nfce.Danfe.csproj" />
+      <ProjectReference Include="..\..\src\DFeBrasil\DFeBrasil.csproj" />
     </ItemGroup>
-    
+
 </Project>
