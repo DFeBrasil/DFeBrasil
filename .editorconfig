@@ -1,0 +1,21 @@
+
+[*]
+
+# Microsoft .NET properties
+csharp_new_line_before_members_in_object_initializers = false
+
+# ReSharper properties
+resharper_blank_lines_after_multiline_statements = 1
+resharper_blank_lines_before_control_transfer_statements = 1
+resharper_csharp_max_line_length = 120
+resharper_csharp_wrap_after_declaration_lpar = true
+resharper_csharp_wrap_arguments_style = chop_if_long
+resharper_csharp_wrap_before_binary_opsign = true
+resharper_csharp_wrap_before_declaration_rpar = true
+resharper_csharp_wrap_before_invocation_rpar = true
+resharper_csharp_wrap_parameters_style = chop_if_long
+resharper_csharp_wrap_ternary_expr_style = chop_always
+resharper_place_accessorholder_attribute_on_same_line = false
+resharper_place_simple_initializer_on_single_line = false
+resharper_remove_blank_lines_near_braces_in_declarations = false
+resharper_wrap_object_and_collection_initializer_style = chop_always

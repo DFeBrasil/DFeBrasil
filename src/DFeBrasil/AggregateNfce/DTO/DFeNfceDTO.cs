@@ -15,8 +15,8 @@ public record DFeNfceDTO
     public bool EhHomologacao { get; set; }
     public DFeNfceEmitenteDTO Emitente { get; set; }
     public DFeNfceConsumidorDTO Consumidor { get; set; }
-    public IList<DFeNfceItemDTO> Itens { get; set; } = new List<DFeNfceItemDTO>();
-    public IList<DFeNfcePagamentoDTO> Pagamentos { get; set; } = new List<DFeNfcePagamentoDTO>();
+    public IEnumerable<DFeNfceItemDTO> Itens { get; set; } = new List<DFeNfceItemDTO>();
+    public IEnumerable<DFeNfcePagamentoDTO> Pagamentos { get; set; } = new List<DFeNfcePagamentoDTO>();
     public DFeNfceAutorizacaoDTO Autorizacao { get; set; }
     public DFeNfceCancelamentoDTO Cancelamento { get; set; }
 }
