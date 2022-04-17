@@ -42,7 +42,15 @@ jobs:
         working-directory: ./
         run: dotnet build -c Release --no-restore
 
-      - name: UnitTests Nfce Danfe
+      - name: UnitTests DFeBrasil
+        run: dotnet test -c Release --logger:"console;verbosity=normal" --no-build
+        working-directory: ./tests/DFeBrasil.UnitTests
+
+      - name: UnitTests DFeBrasil.XmlParser
+        run: dotnet test -c Release --logger:"console;verbosity=normal" --no-build
+        working-directory: ./tests/DFeBrasil.XmlParser.UnitTests
+
+      - name: UnitTests DFeBrasil.Nfce.Danfe
         run: dotnet test -c Release --logger:"console;verbosity=normal" --no-build
         working-directory: ./tests/DFeBrasil.Nfce.Danfe.UnitTests
 
