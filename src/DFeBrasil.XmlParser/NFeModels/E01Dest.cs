@@ -5,16 +5,16 @@ namespace DFeBrasil.XmlParser.NFeModels;
 [XmlRoot("dest", IsNullable = true)]
 public record E01Dest
 {
-    [XmlAttribute("CNPJ")]
+    [XmlElement("CNPJ", IsNullable = true)]
     public string CNPJ { get; set; }
 
-    [XmlAttribute("CPF")]
+    [XmlElement("CPF", IsNullable = true)]
     public string CPF { get; set; }
 
-    [XmlAttribute("idEstrangeiro")]
+    [XmlElement("idEstrangeiro", IsNullable = true)]
     public string IdEstrangeiro { get; set; }
 
-    [XmlAttribute("xNome")]
+    [XmlElement("xNome", IsNullable = true)]
     public string Nome { get; set; }
 
     [XmlElement("IE", IsNullable = true)]

@@ -1,5 +1,8 @@
+using System.ComponentModel;
 using DFeBrasil.AggregateNfce.DTO;
+using DFeBrasil.Comum;
 using DFeBrasil.XmlParser.NFeModels;
+using EnumsNET;
 
 namespace DFeBrasil.Nfce.Danfe;
 
@@ -55,9 +58,10 @@ public static class XMLExtensions
 
     private static DFeNfceConsumidorDTO ConvertDest(E01Dest dest)
     {
+        if (dest == null) return null;
         var documento = dest.CPF ?? dest.CNPJ;
 
-        return new(documento, dest.Nome);
+        return new(documento, dest.Nome ?? string.Empty);
     }
 
     private static IEnumerable<DFeNfceItemDTO> ConvertDet(IEnumerable<H01Det> det)
@@ -74,10 +78,19 @@ public static class XMLExtensions
 
     private static IEnumerable<DFeNfcePagamentoDTO> ConvertPag(YA01Pag pag)
     {
-        return pag?.DetPag?.Select(i => new DFeNfcePagamentoDTO(
-                i.TipoPag.ToString(),
-                i.ValorPag
-            )
+        return pag?.DetPag?.Select(i =>
+            {
+                var tipoPag = (DFeTipoPagamento)i.TipoPag;
+                var descricao = tipoPag.GetAttributes()?.Get<DescriptionAttribute>();
+
+                if (descricao == null)
+                    throw new ArgumentException("Descrição tipo de pagamento não pode ser nula.");
+
+                return new DFeNfcePagamentoDTO(
+                    descricao.Description,
+                    i.ValorPag
+                );
+            }
         );
     }
 }

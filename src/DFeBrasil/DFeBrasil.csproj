@@ -7,4 +7,8 @@
         <PackageId>DFeBrasil</PackageId>
     </PropertyGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Enums.NET" Version="4.0.0" />
+    </ItemGroup>
+
 </Project>
