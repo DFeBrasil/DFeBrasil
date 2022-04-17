@@ -1,4 +1,5 @@
 using System.IO;
+using DFeBrasil.Nfce.Danfe.UnitTests.Fixtures;
 using Xunit;
 
 namespace DFeBrasil.Nfce.Danfe.UnitTests;
@@ -6,25 +7,10 @@ namespace DFeBrasil.Nfce.Danfe.UnitTests;
 public class NfceDanfeTests
 {
     [Fact]
-    public void CriarPDF_ModeloCompleto_RetornaMemoryStream()
+    public void CriarPDF_ComConsumidor_RetornaMemoryStream()
     {
         // Arrange
-        var nfce = DFeNfceFixture.GerarDTO("Completa");
-        var danfe = new NfceDanfe(nfce);
-
-        // Act
-        using var pdf = danfe.CriarPDF();
-
-        // Aarrange
-        Assert.IsType<MemoryStream>(pdf);
-        Assert.Equal(0, pdf.Position);
-    }
-    
-    [Fact]
-    public void CriarPDF_ModeloCancelado_RetornaMemoryStream()
-    {
-        // Arrange
-        var nfce = DFeNfceFixture.GerarDTO("Canceleda");
+        var nfce = NfceFixtures.ObterComConsumidor();
         var danfe = new NfceDanfe(nfce);
 
         // Act
@@ -36,10 +22,40 @@ public class NfceDanfeTests
     }
 
     [Fact]
-    public void CriarPDF_ModeloDefault_RetornaMemoryStream()
+    public void CriarPDF_ComCancelamento_RetornaMemoryStream()
     {
         // Arrange
-        var nfce = DFeNfceFixture.GerarDTO("Default");
+        var nfce = NfceFixtures.ObterNfce(cancealda: true);
+        var danfe = new NfceDanfe(nfce);
+
+        // Act
+        using var pdf = danfe.CriarPDF();
+
+        // Aarrange
+        Assert.IsType<MemoryStream>(pdf);
+        Assert.Equal(0, pdf.Position);
+    }
+
+    [Fact]
+    public void CriarPDF_ComContingencia_RetornaMemoryStream()
+    {
+        // Arrange
+        var nfce = NfceFixtures.ObterEmContingencia();
+        var danfe = new NfceDanfe(nfce);
+
+        // Act
+        using var pdf = danfe.CriarPDF();
+
+        // Aarrange
+        Assert.IsType<MemoryStream>(pdf);
+        Assert.Equal(0, pdf.Position);
+    }
+
+    [Fact]
+    public void CriarPDF_ComModeloBasico_RetornaMemoryStream()
+    {
+        // Arrange
+        var nfce = NfceFixtures.ObterNfce();
         var danfe = new NfceDanfe(nfce);
 
         // Act
@@ -54,7 +70,7 @@ public class NfceDanfeTests
     public void ExportarPDF_ComFileName_CriaArquivoNoDisco()
     {
         // Arrange
-        var nfce = DFeNfceFixture.ObterCompleto();
+        var nfce = NfceFixtures.ObterComConsumidor();
         var danfe = new NfceDanfe(nfce);
         var arquivoEsperado = Path.GetTempFileName();
 

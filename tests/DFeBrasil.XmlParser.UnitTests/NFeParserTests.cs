@@ -1,6 +1,5 @@
 using System.IO;
 using System.Text;
-using DFeBrasil.XmlParser.NFeModels;
 using Xunit;
 
 namespace DFeBrasil.XmlParser.UnitTests;

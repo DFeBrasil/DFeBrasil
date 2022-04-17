@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using DFeBrasil.AggregateNfce.DTO;
 
-namespace DFeBrasil.Nfce.Danfe.UnitTests;
+namespace DFeBrasil.Nfce.Danfe.UnitTests.Fixtures;
 
-public static class DFeNfceFixture
+public static class NfceFixtures
 {
-    public static DFeNfceDTO ObterDTO(
+    public static DFeNfceDTO ObterNfce(
         DFeNfceConsumidorDTO? consumidor = null,
-        DFeNfceCancelamentoDTO? cancelamento = null,
-        bool emContingencia = false
+        bool emContingencia = false,
+        bool cancealda = false
     )
     {
         var dto = new DFeNfceDTO
@@ -26,8 +26,8 @@ public static class DFeNfceFixture
             TributosAproximado = 15M,
             EhHomologacao = true,
             EhContingencia = emContingencia,
+            Cancelada = cancealda,
             Consumidor = consumidor!,
-            Cancelamento = cancelamento!,
             Autorizacao = new(DateTime.UtcNow, "12394219031231"),
             Emitente = new(
                 "AGIL4 TECNOLOGIA LTDA ME",
@@ -53,23 +53,13 @@ public static class DFeNfceFixture
         return dto;
     }
 
-    public static DFeNfceDTO ObterCompleto()
+    public static DFeNfceDTO ObterComConsumidor()
     {
-        return ObterDTO(new("68492125080", "João Pedro da Silva"));
+        return ObterNfce(new("68492125080", "João Pedro da Silva"));
     }
 
-    public static DFeNfceDTO ObterCancelada()
+    public static DFeNfceDTO ObterEmContingencia()
     {
-        return ObterDTO(cancelamento: new("123456789012345"));
-    }
-
-    public static DFeNfceDTO GerarDTO(string type)
-    {
-        return type switch
-        {
-            "Completa" => ObterCompleto(),
-            "Cancelada" => ObterCancelada(),
-            _ => ObterDTO()
-        };
+        return ObterNfce(emContingencia: true);
     }
 }

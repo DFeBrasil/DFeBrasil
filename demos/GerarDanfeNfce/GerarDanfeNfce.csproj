@@ -12,4 +12,10 @@
       <ProjectReference Include="..\..\src\DFeBrasil\DFeBrasil.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="fake-nfce.xml">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>

@@ -18,6 +18,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\DFeBrasil.XmlParser\DFeBrasil.XmlParser.csproj" />
       <ProjectReference Include="..\DFeBrasil\DFeBrasil.csproj" />
     </ItemGroup>
     

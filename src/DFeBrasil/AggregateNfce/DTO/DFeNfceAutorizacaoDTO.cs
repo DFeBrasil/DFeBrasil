@@ -1,7 +1,7 @@
 namespace DFeBrasil.AggregateNfce.DTO;
 
-public record DFeNfceAutorizacaoDTO(DateTime DataAutorizacao, string Protocolo)
+public record DFeNfceAutorizacaoDTO(DateTimeOffset DataAutorizacao, string Protocolo)
 {
-    public DateTime DataAutorizacao { get; } = DataAutorizacao;
+    public DateTimeOffset DataAutorizacao { get; } = DataAutorizacao;
     public string Protocolo { get; } = Protocolo;
 }

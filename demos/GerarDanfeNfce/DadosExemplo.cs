@@ -2,7 +2,7 @@ using DFeBrasil.AggregateNfce.DTO;
 
 namespace GerarDanfeNfce;
 
-public static class NfceDummy
+public static class DadosExemplo
 {
     public static DFeNfceDTO Gerar()
     {
@@ -21,7 +21,6 @@ public static class NfceDummy
             EhHomologacao = true,
             EhContingencia = true,
             Consumidor = new("21025760000123", "AGIL4 TECNOLOGIA"),
-            Cancelamento = new("123456789012345"),
             Autorizacao = new(DateTime.UtcNow, "12394219031231"),
             Emitente = new(
                 "AGIL4 TECNOLOGIA LTDA ME",
