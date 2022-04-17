@@ -17,12 +17,12 @@ public static class XMLExtensions
             QrCode = nfeProc.NFe.InfNFeSupl.QrCode,
             UrlChave = nfeProc.NFe.InfNFeSupl.UrlChave,
             TotalDesconto = nfeProc.NFe.InfNFe.Total.ICMSTotal.ValorDesc,
-            TotalOutros = nfeProc.NFe.InfNFe.Total.ICMSTotal.ValorOutro,
+            TotalOutros = CalculaTotalOutros(nfeProc.NFe.InfNFe.Total.ICMSTotal),
             TotalCupom = nfeProc.NFe.InfNFe.Total.ICMSTotal.ValorNF,
             TributosAproximado = nfeProc.NFe.InfNFe.Total.ICMSTotal.ValorTotTrib,
             EhContingencia = nfeProc.NFe.InfNFe.Ide.TpEmis == 9,
             EhHomologacao = nfeProc.NFe.InfNFe.Ide.TpAmb == 2,
-            Emitente = CovnertEmit(nfeProc.NFe.InfNFe.Emit),
+            Emitente = ConvertEmit(nfeProc.NFe.InfNFe.Emit),
             Consumidor = ConvertDest(nfeProc.NFe.InfNFe.Dest),
             QuantidadeItens = nfeProc.NFe.InfNFe.Det.Count,
             Itens = ConvertDet(nfeProc.NFe.InfNFe.Det),
@@ -36,7 +36,12 @@ public static class XMLExtensions
         return model;
     }
 
-    private static DFeNfceEmitenteDTO CovnertEmit(C01Emit emit)
+    private static decimal CalculaTotalOutros(W02ICMSTot tot)
+    {
+        return tot.ValorFrete + tot.ValorOutro + tot.ValorSeg;
+    }
+
+    private static DFeNfceEmitenteDTO ConvertEmit(C01Emit emit)
     {
         var documento = emit.CPF ?? emit.CNPJ;
 
