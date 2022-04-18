@@ -17,7 +17,7 @@ var danfeDto = NfceDanfeBuilder.Configurar()
     .ComNfce(nfceExemplo)
     .Build();
 
-danfeDto.ExportarPDF($"./nfce-dto-{DateTime.UtcNow:ddMMyyyyHHmmss}.pdf");
+danfeDto.Exportar($"./nfce-dto-{DateTime.UtcNow:ddMMyyyyHHmmss}.pdf");
 
 // Com o XML da NFC-e Criado só solicitar a exportação do PDF para o Disco
 // ou utiliza-lo em MemoryStream
@@ -25,4 +25,4 @@ var danfeXml = NfceDanfeBuilder.Configurar()
     .ComStringXML(File.ReadAllText("./fake-nfce.xml"), cancelada: false)
     .Build();
 
-danfeXml.ExportarPDF($"./nfce-xml-{DateTime.UtcNow:ddMMyyyyHHmmss}.pdf");
+danfeXml.Exportar($"./nfce-xml-{DateTime.UtcNow:ddMMyyyyHHmmss}.pdf");

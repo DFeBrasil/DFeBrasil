@@ -7,67 +7,67 @@ namespace DFeBrasil.Nfce.Danfe.UnitTests;
 public class NfceDanfeTests
 {
     [Fact]
-    public void CriarPDF_ComConsumidor_RetornaMemoryStream()
+    public void Exportar_ComConsumidor_RetornaStream()
     {
         // Arrange
         var nfce = NfceFixtures.ObterComConsumidor();
         var danfe = new NfceDanfe(nfce);
+        using var memoryStream = new MemoryStream();
 
         // Act
-        using var pdf = danfe.CriarPDF();
+        danfe.Exportar(memoryStream);
 
-        // Aarrange
-        Assert.IsType<MemoryStream>(pdf);
-        Assert.Equal(0, pdf.Position);
+        // Assert
+        Assert.NotEqual(0, memoryStream.Length);
     }
 
     [Fact]
-    public void CriarPDF_ComCancelamento_RetornaMemoryStream()
+    public void Exportar_ComCancelamento_RetornaStream()
     {
         // Arrange
         var nfce = NfceFixtures.ObterNfce(cancealda: true);
         var danfe = new NfceDanfe(nfce);
+        using var memoryStream = new MemoryStream();
 
         // Act
-        using var pdf = danfe.CriarPDF();
+        danfe.Exportar(memoryStream);
 
-        // Aarrange
-        Assert.IsType<MemoryStream>(pdf);
-        Assert.Equal(0, pdf.Position);
+        // Assert
+        Assert.NotEqual(0, memoryStream.Length);
     }
 
     [Fact]
-    public void CriarPDF_ComContingencia_RetornaMemoryStream()
+    public void Exportar_ComContingencia_RetornaStream()
     {
         // Arrange
         var nfce = NfceFixtures.ObterEmContingencia();
         var danfe = new NfceDanfe(nfce);
+        using var memoryStream = new MemoryStream();
 
         // Act
-        using var pdf = danfe.CriarPDF();
+        danfe.Exportar(memoryStream);
 
-        // Aarrange
-        Assert.IsType<MemoryStream>(pdf);
-        Assert.Equal(0, pdf.Position);
+        // Assert
+        Assert.NotEqual(0, memoryStream.Length);
     }
 
     [Fact]
-    public void CriarPDF_ComModeloBasico_RetornaMemoryStream()
+    public void Exportar_ComModeloBasico_RetornaStream()
     {
         // Arrange
         var nfce = NfceFixtures.ObterNfce();
         var danfe = new NfceDanfe(nfce);
+        using var memoryStream = new MemoryStream();
 
         // Act
-        using var pdf = danfe.CriarPDF();
+        danfe.Exportar(memoryStream);
 
-        // Aarrange
-        Assert.IsType<MemoryStream>(pdf);
-        Assert.Equal(0, pdf.Position);
+        // Assert
+        Assert.NotEqual(0, memoryStream.Length);
     }
 
     [Fact]
-    public void ExportarPDF_ComFileName_CriaArquivoNoDisco()
+    public void Exportar_ComFileName_CriaArquivoNoDisco()
     {
         // Arrange
         var nfce = NfceFixtures.ObterComConsumidor();
@@ -75,7 +75,7 @@ public class NfceDanfeTests
         var arquivoEsperado = Path.GetTempFileName();
 
         // Act
-        danfe.ExportarPDF(arquivoEsperado);
+        danfe.Exportar(arquivoEsperado);
 
         // Aarrange
         Assert.True(File.Exists(arquivoEsperado));
