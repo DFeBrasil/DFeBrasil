@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Name="Open FastReport Layout DANFE NFC-e" ReportInfo.Author="Agil4 Tecnologia" ReportInfo.Version="v1" ReportInfo.Created="03/28/2022 14:23:25" ReportInfo.Modified="04/24/2022 13:38:01" ReportInfo.CreatorVersion="2022.2.0.0">
+<Report ScriptLanguage="CSharp" TextQuality="Regular" ReportInfo.Name="Open FastReport Layout DANFE NFC-e" ReportInfo.Author="Agil4 Tecnologia" ReportInfo.Version="v1" ReportInfo.Created="03/28/2022 14:23:25" ReportInfo.Modified="04/24/2022 15:37:54" ReportInfo.CreatorVersion="2022.2.0.0">
   <ScriptText>using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Data;
+using System.Text;
 using FastReport;
 using FastReport.Data;
 using FastReport.Dialog;
@@ -55,25 +56,42 @@ namespace FastReport
         // TextoContigencia.Height = 0f;
       }
     }
-    
-    private string NormalizaQrCode(string qrcode) 
-    {
-      string output = qrcode.Substring(8);
-      output = output.Substring(0, output.Length-2);
-      
-      return output;
-    }
-    
+       
     private string FormataData(string dataString)
     {
       var d = DateTimeOffset.Parse(dataString);
       return d.ToString(&quot;dd/MM/yyyy HH:mm&quot;);
     }
+    
+    public static string Mask(string input, string mask) {
+      if (String.IsNullOrWhiteSpace(input)) return input;
+      
+      StringBuilder builder = new StringBuilder();
+      int inputIndex = 0;
+      int maskIndex = 0;
+      
+      while (maskIndex &lt; mask.Length) {
+        if (mask[maskIndex] == '#') {
+          builder.Append(input[inputIndex]);
+          inputIndex++;
+        } else {
+          builder.Append(mask[maskIndex]);
+        }
+        
+        maskIndex++;
+      }
+      
+      if (inputIndex &lt; input.Length) {
+        builder.Append(input.Substring(inputIndex));
+      }
+
+      return builder.ToString();
+    }
   }
 }
 </ScriptText>
   <Dictionary>
-    <JsonDataSourceConnection Name="JsonConnection" ConnectionString="rijcmlq9gKq0KJrbm7sKjooxLu2N9N0DGEhb6gHHDl7jo3cBne/3WwzY9z9U69BWX43q1yV0LPUbyXIwGAcBiPbNuhsxSEpKYCUHxCO+FlDYWfQ+4SfD4N5FuWv4BBDVERAHWHSRjwisILSSHnPmznvAquwXR5OnGRavW6Rp5SOrjtnmrpD8igClf4/bY9ygv90A07jI7TtorrfbySQG+vNcIKQGNFU9GXJPiO6/eDnGJcdlu/hAEOphqlbEojLpU6X79XNrYnYxbWOM9PxZ1rAyW3yC8/hpRXbDPBPqk5GrxskiCjfU++X6LwaKKbiqoSdAsygdPShf9NdCIr7LJiiKwCiGkjrMPU6fP5da5wuKbv/97WEVztRDe2mGTsLnMf315XfL46eDPm/OVX1paE3Q5r3snmT5GBLEz2V+mZdouZZB27p7rGn8DX+yfmLTogiKcJA9b9PzYIROt/sLyJQIayTWjjQZLnvRrM4+68pOobwl/KcgODcSc1sFBO4lO55VUZ8pKxsUjKw4ZpsTDmLBr5z3nMBauJWSjuMrhXxddzWbQhwvYySQZQYINz0Lef/9yLz50OopieTBbFt62OcXL7Fh5cZ7Lo2vzy5YtjpBtl/Zkoqhskn0Pd/SxHGDVhgW54SYI9VZZi/ybDN71Uryc+NgHlvtfB0YTVQYTROJV945G5Se0HkKT5/471zQNm6SEFZSVd1nun+e41BCxD40OAAKk+v/G9v8gnbMhnWIEaDIGzBGDMr/lt5yf/6j0Q26DBnoSjTJSORnGlkdCxrv+r+Jd2R02O9iDVqdhisr3Nmf8OKMuUqrnPXMwn6af95sV4HUrFO07S2Dp0tkGGcGE+otcp5QaQYFnu4qC0ry39ruYc08VfjFfk/bsWcAGjCBnapcUS3IjYDWDxy5IoNXEuQu3F3Ti0efug9PSgXsCzMBzMbc4jKt/nXhT8SMTjRTVTQEclBP4AFTAM3sq8SIGNlRfSjBYIYE49Z3qvvN68/jWY/tNyzN1MhkB4JExiCGQa2lEtQaeFq4hmShskaow6kzJ6VnMbe7o2zxKfdhfS8b/4AGIretMpBt8FZHMm2diwzsM+MqE9QSGScFthUTWE+ds5VfBnaeIv4QMDn0Q69Vd6tPoeuWkChRxPFbGe6wdAwnIg7LV/O6X4pd4MTPCrCIkoYTOIEsrvp+4vTHIEOg2Hp03w61Q2hp8W+oAEn8csuNqnWyYRpTBRTpefbaT6zQ0nddEn3JCtPau17fcI+GEJcouCMcMGqOWpWTEDCfhyYlwmld2q+v5EVbf/qusyTdKK7t7SXpaV+1wHVYQbiWRzBIU13itqvbH9Qp5603a/QoUWGVTkQWgrHHKAGTWhijVxdAJFmDSURUFLn56TcMUooPuvDfUKe3YcN9dhv1urXecLzeHdXNOqzG/NGukGXrWbyGUIUxYhrZbqrUf/ECc3+gMAlY4oCzyU7nQsnFU8cKSE6hitc89vlP1+iPTIOSVe5Yty8w9IBhQXqU08sUEaDgMNcvywuoQ8T96mHMJRWaMyvN0kvGEbIaOkkgdzc21DKsml/tdETYkyvo/hF6+im0romn5ZwKnN+qyUZmkYaWiWRtsCglKMC4jExsXq5kFZOKq48eRzqy0DWGiim5ADeNvdXetneypBm3GTxcUoS3fHVQhy38YlhZuf6/D4hh9OmqDXCl/bU0EPB7AuXVqniLWxrrU2NuKhNOeLVSvKjHjh3LEJXwv2jgKTYzsRVJOACwCl0fqY3t+M9cLP75hC4+3hKSSSVUVxrcbYHe4mT9RGVZO1a/UUiTUG9EoyITawZWe6EgDZStp7FGQwFu/SwjkflIZCTGZ1RY50ICUvWP3bUt3MGtIHDDseX2K1WRhc78k7HtT4vpK9mkkXztm11DTo72heTozzpKXrZ1A2uLm1B43j+03100YiduY0BMgvHYmzMjt821GxlROAu2WFgxYhuPHyWPPQGDDjXs6qWgxjXqG1j7afzD+FITSonNApjFHhubIp1+jZPBsDPnEqMSWmtheuiV3p8S7EHlyBAH03cqqU72cijfZhFakYmRtxmDUnAG+qpLX/RIm20+VSlZ8KZCKtjuyUQF8TVHOOBWfdZYRPmj1YTakz4HRof4ovkqrVxzt9vdw8bDAhEQifUaJPhkzoM/i2L7l+2OLqEQd8c9x5GfzKkPDcKMiudlmhEYgSB8+o337LuzRy+Hd5PxtWcp8HVWW/xUDjbiyY+UdGgPu+Mkt7xA0g7TYfXYUmyYxK0eiCKpie9+O/HTQw2jYh74beF1Mo8D1/5OV/35eBt8fJ6/w/15ne64qMDWSttMEPbFSsaoETIGaWYJoVrN8QizR3qqbvj7eZccRYq7sjnnji0oTW05aVpuxT9GNZZIhMwdZWoBI5xYglek4mNGkZSWBVCUS8LiUmQrxtoM7XHQot7Qm3wK3QpyhnWA6NdkX4XE/qPa/9iJO5ftCVr/RVQpbkhQzVdIImydze/CNtepJE+TpiO6S58AKjSsiPk78ODzN5eH3UE6zxRVKI6Dw+b/InKATpu0W4OHpDC/RR/HLWMbre0TrddFM3s5A8Z5hAJuXFE9nXiSjUm5JgB68KC2OSITXr/Rr23uyMFncFXkScDSwqq6VGHsujhgkv0oE1b6lRIN7aJgcdGUSwd9BvTWi5gIyVyuN3oo5JaGa5XK/OS1F6wdWsSufimqkzTaLcP/z35jdzG0fLN0OAO7wAo2J8rtgQDTp+yKz6dUhJM8VjBdsBeh5dZ+zmU/GGxHdWOwRXlnNJWHgMcW9B4mj9Ua/Fs+sdQODdrjh4mhb1etye0iZdAU+ejbVxsnQTAqM8Qvh+4BMD4EylB/viwNlOWsZPr+5j41n4sRmXhwMRGkGKxrIhmtMV8ECaP7Ohx/lxyRo2IKhUIVYuiqrRY0pnMlyfEyvpiJE7VagCoNiEYJJrfjvRkd5nRVxkjbK79z3e1MFMbbsdg1ju6Zanjz/0Bo1tcrgbzEM1bRnSOWtiMCPl6G8C5IGdzHTGmqg/83m57iHKo1LYF+CTpDaFI5xtbhqIGXgPUKOnih78B3kOIjWbcqh8TmJwK4Z/6YvsNMzg0TzGKa5FpNY/pAJ7yBE3DFxHt/bUUcymHQSnmdS1H3ywxcsw0e7e5+KFsixdmPLQlCJQGTpV5R/NuCPaIPYvdpC7NfYMrqDstwITmJWdXEHL0C2blsXrk06lE/PJtx3kBbH35DU2XnIa8rH9CQXU31kA3Kzk9qzopkJEQYb+5QaaEv3l8g84MIvleTwcOsZlDLpHregmgbtKA1ywOsgf1AWJEHHZsDiVI00/H/bOPCqchXaEBT5XUXs3rwsAoro7SD6uHoKsBgWmHOuj9ZS4L6xPDnm0LKtKlWeUwJV/Y88MHtlZunJCLDrXfjtJ2ktCBiRZaSN0fyN+k0cbc19+reXtyMgIvPqk8Z315viOnukNJueSK367bhLaeWIDt0XFjBmYc9lzG3un3S7HytA3ktqZzbRnpFkmTHYr7SyEobqtw+wObJbAAu45QcJ0sNPAhO0GbVGe2U5PLfYGk63RBe1pLklLrS+6pr7NmDzWZgIyEuIhJLjxvc/laRK2Lu9uw9aiFv/wWN3rcdl9VAwGUs90kMBvdrH0xiNpgxWIBv0dNRehIfNAxEZOd/t3UXIE5n7GXnGj92QVLg7u2XKSGHhNzKwvlXmbgVWJfPcITjD9kbBx5JvvfN3OkABKRtfKUEAwtRPVyGcdQtohKrSe1HdCttdCexUKD3DiFAg1rJxzn2KcdtUATumkP0rP1hge48qVKMdFsT7naXUkyHOVCGUADRdo0goa0Kf/YXUFdJis+k6QH4BnOvSu6DNW9ktzHDRNuOnppJ9Sfshy8Vh0YEljGRV4umViuy8UZ2rQtSOGhEzissmdgGK8Q76v6pobzay/b7P8FCg32LrmwCFgyZ78pZpn3mzvyrzcC1YR6Zni7yXkt9iuPvaGOLuoY9fBoSfGyWP5ZufNBVnsl1UZa3NxjGUMHSMmaYzv3mzxmNGtuNckaO27X580PNHAarSPulAk0+uZt5bKAqPEH1vgKa3sWEosaKNqSOAS4H8XvOXGELKLByOCK/q+AVLDqnPjZj/bcNycOcolp6GA/SAVyyVUAnO+lgEftkktIh1znUwgZoTuyj9MyJIlRixee7ESBDPc5E2mPwn6saQzIUmpPwvNxIbO36xHHIFtYYgpzJEMYiKTjlk4BX3c3Vkg8NTrQNcYutQKwdRMrTs9BIDruDCUGPu5AmDE+uwGRfgpQf7uV+fZmtl2D+CDINvNKkoQbwVSgu7y8FlK7mukoiraln+14rypVLv9JfkAVnKIAekXYndbNof7hQ9z1w59oE1J2oiruKm9ibAP2t258E4z+xXrwvAwlZcTdY/twWge9/hBNQGKjlpxme/QtNw==">
+    <JsonDataSourceConnection Name="JsonConnection" ConnectionString="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">
       <JsonTableDataSource Name="JsonData" DataType="FastReport.Data.JsonConnection.JsonParser.JsonArray" PropName="JSON" Enabled="true" TableName="JsonData">
         <Column Name="index" DataType="System.Int32"/>
         <Column Name="Nfce" DataType="FastReport.JsonBase" PropName="item">
@@ -124,6 +142,8 @@ namespace FastReport
             <Column Name="Protocolo" DataType="System.String"/>
           </Column>
           <Column Name="Cancelada" DataType="System.Boolean" BindableControl="CheckBox"/>
+          <Column Name="Serie" DataType="System.Double"/>
+          <Column Name="Numero" DataType="System.Double"/>
         </Column>
         <Column Name="array" DataType="FastReport.JsonBase"/>
       </JsonTableDataSource>
@@ -133,13 +153,13 @@ namespace FastReport
     <ReportTitleBand Name="ReportTitle1" Width="272.16" Height="7.56"/>
     <DataBand Name="DataNfce" Top="10.23" Width="272.16" Height="77.49" CanGrow="true" DataSource="JsonData">
       <TextObject Name="Text2" Width="272.16" Height="15.12" CanBreak="false" Text="[JsonData.Nfce.Emitente.NomeFantasia]" HorzAlign="Center" WordWrap="false" Font="Arial, 8pt, style=Bold"/>
-      <TextObject Name="Text6" Top="41.58" Width="158.76" Height="11.34" CanBreak="false" Text="CNPJ: [JsonData.Nfce.Emitente.Cnpj]" WordWrap="false" Font="Arial, 7pt"/>
+      <TextObject Name="Text6" Top="41.58" Width="158.76" Height="11.34" CanBreak="false" Text="CNPJ: [Mask([JsonData.Nfce.Emitente.Cnpj], &quot;##.###.###/####-##&quot;)]" WordWrap="false" Font="Arial, 7pt"/>
       <TextObject Name="Text7" Left="158.76" Top="41.58" Width="113.4" Height="11.34" CanBreak="false" Text="IE: [JsonData.Nfce.Emitente.Ie]" HorzAlign="Right" WordWrap="false" Font="Arial, 7pt"/>
-      <TextObject Name="Text25" Top="52.92" Width="272.16" Height="11.34" CanBreak="false" Text="Telefone: [JsonData.Nfce.Emitente.Telefone]" Format="Custom" Format.Format="(00) 000-00000" WordWrap="false" Font="Arial, 7pt"/>
+      <TextObject Name="Text25" Top="52.92" Width="272.16" Height="11.34" CanBreak="false" Text="Telefone: [Mask([JsonData.Nfce.Emitente.Telefone], &quot;(##) ####-####&quot;)]" WordWrap="false" Font="Arial, 7pt"/>
       <TextObject Name="Text26" Top="15.12" Width="272.16" Height="11.34" CanBreak="false" Text="[JsonData.Nfce.Emitente.Nome]" HorzAlign="Center" WordWrap="false" Font="Arial, 7pt"/>
       <TextObject Name="Text8" Top="64.26" Width="272.16" Height="11.34" CanGrow="true" Text="Endereço: [JsonData.Nfce.Emitente.Endereco]" Font="Arial, 7pt"/>
       <ChildBand Name="Child_TextoHomolog" Top="90.38" Width="272.16" Height="37.8" VisibleExpression="[JsonData.Nfce.EhHomologacao]" Border.Lines="Top, Bottom" Border.Style="Dot" Border.Width="0.25">
-        <TextObject Name="Text23" Width="272.16" Height="37.8" Text="EMITIDO EM AMBIENTE DE HOMOLOGAÇÃO SEM VALOR FISCAL" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+        <TextObject Name="Text23" Width="272.16" Height="37.8" Text="EMITIDO EM AMBIENTE DE HOMOLOGAÇÃO SEM VALOR FISCAL" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Underline"/>
         <ChildBand Name="Child_TextoDanfe" Top="130.85" Width="272.16" Height="45.36">
           <TextObject Name="Text9" Top="3.78" Width="272.16" Height="11.34" Text="DANFE NFC-e" HorzAlign="Center" Font="Arial, 8pt, style=Bold"/>
           <TextObject Name="Text10" Top="18.9" Width="272.16" Height="22.68" Text="Documento Auxiliar de Nota Fiscal de Consumidor Eletrônica&#13;&#10;Não permite aproveitamento de crédito ICMS" HorzAlign="Center" Font="Arial, 7pt"/>
@@ -159,21 +179,21 @@ namespace FastReport
           <TextObject Name="Text11" Width="30.24" Height="11.34" Text="Num." WordWrap="false" Font="Arial, 7.7pt, style=Bold"/>
           <TextObject Name="Text12" Left="30.24" Width="241.92" Height="11.34" Text="Descrição" WordWrap="false" Font="Arial, 7.7pt, style=Bold"/>
           <TextObject Name="Text13" Top="12.34" Width="98.28" Height="11.34" Text="Qtde" HorzAlign="Right" WordWrap="false" Font="Arial, 7.7pt, style=Bold"/>
-          <TextObject Name="Text14" Left="113.4" Top="12.34" Width="75.6" Height="11.34" Text="Valor Unitário" HorzAlign="Right" WordWrap="false" Font="Arial, 7.7pt, style=Bold"/>
+          <TextObject Name="Text14" Left="113.4" Top="12.34" Width="75.6" Height="11.34" IsIntersectedWithOtherObject="true" Text="Valor Unitário" HorzAlign="Right" WordWrap="false" Font="Arial, 7.7pt, style=Bold"/>
           <TextObject Name="Text15" Left="98.28" Top="12.34" Width="15.12" Height="11.34" Text="x" HorzAlign="Center" WordWrap="false" Font="Arial, 7.7pt, style=Bold"/>
-          <TextObject Name="Text16" Left="188.78" Top="12.34" Width="83.38" Height="11.34" Text="Valor Total" HorzAlign="Right" WordWrap="false" Font="Arial, 7.7pt, style=Bold"/>
+          <TextObject Name="Text16" Left="188.78" Top="12.34" Width="83.38" Height="11.34" IsIntersectedWithOtherObject="true" Text="Valor Total" HorzAlign="Right" WordWrap="false" Font="Arial, 7.7pt, style=Bold"/>
         </DataHeaderBand>
         <DataFooterBand Name="DataFooter1" Top="277.6" Width="272.16" Height="86.94" Border.Lines="Top, Bottom" Border.Style="Dot" Border.Width="0.25">
-          <TextObject Name="Text27" Top="3.78" Width="204.12" Height="11.34" Text="Quantidade de itens" WordWrap="false" Font="Arial, 7pt"/>
-          <TextObject Name="Text28" Left="203.9" Top="3.78" Width="68.26" Height="11.34" Text="[JsonData.Nfce.QuantidadeItens]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 7pt"/>
-          <TextObject Name="Text31" Top="18.9" Width="204.12" Height="11.34" Text="Total Desconto" WordWrap="false" Font="Arial, 7pt"/>
-          <TextObject Name="Text32" Left="203.9" Top="18.9" Width="68.26" Height="11.34" Text="[JsonData.Nfce.TotalDesconto]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" WordWrap="false" Font="Arial, 7pt"/>
-          <TextObject Name="Text29" Top="30.24" Width="204.12" Height="11.34" Text="Total Outros" WordWrap="false" Font="Arial, 7pt"/>
-          <TextObject Name="Text30" Left="203.9" Top="30.24" Width="68.26" Height="11.34" Text="[JsonData.Nfce.TotalOutros]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" WordWrap="false" Font="Arial, 7pt"/>
-          <TextObject Name="Text33" Top="41.58" Width="204.12" Height="15.12" Text="Total Cupom" WordWrap="false" Font="Arial, 8.5pt, style=Bold"/>
-          <TextObject Name="Text34" Left="203.9" Top="41.58" Width="68.26" Height="15.12" Text="[JsonData.Nfce.TotalCupom]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" WordWrap="false" Font="Arial, 8.5pt, style=Bold"/>
-          <TextObject Name="Text35" Top="60.48" Width="204.12" Height="22.68" Text="Tributos Totais Incidentes (Lei Federal 12.741/2012)" Font="Arial, 7pt"/>
-          <TextObject Name="Text36" Left="203.9" Top="60.48" Width="68.26" Height="22.68" Text="[JsonData.Nfce.TributosAproximado]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.CurrencySymbol="R$" Format.PositivePattern="2" Format.NegativePattern="9" HorzAlign="Right" WordWrap="false" Font="Arial, 7pt"/>
+          <TextObject Name="Text27" Top="3.78" Width="204.12" Height="11.34" IsIntersectedWithOtherObject="true" Text="Quantidade de itens" WordWrap="false" Font="Arial, 7pt"/>
+          <TextObject Name="Text28" Left="203.9" Top="3.78" Width="68.26" Height="11.34" IsIntersectedWithOtherObject="true" Text="[JsonData.Nfce.QuantidadeItens]" Format="Number" Format.UseLocale="false" Format.DecimalDigits="0" Format.DecimalSeparator="," Format.GroupSeparator="." Format.NegativePattern="1" HorzAlign="Right" WordWrap="false" Font="Arial, 7pt"/>
+          <TextObject Name="Text31" Top="18.9" Width="204.12" Height="11.34" IsIntersectedWithOtherObject="true" Text="Total Desconto" WordWrap="false" Font="Arial, 7pt"/>
+          <TextObject Name="Text32" Left="203.9" Top="18.9" Width="68.26" Height="11.34" IsIntersectedWithOtherObject="true" Text="[JsonData.Nfce.TotalDesconto]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" WordWrap="false" Font="Arial, 7pt"/>
+          <TextObject Name="Text29" Top="30.24" Width="204.12" Height="11.34" IsIntersectedWithOtherObject="true" Text="Total Outros" WordWrap="false" Font="Arial, 7pt"/>
+          <TextObject Name="Text30" Left="203.9" Top="30.24" Width="68.26" Height="11.34" IsIntersectedWithOtherObject="true" Text="[JsonData.Nfce.TotalOutros]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" WordWrap="false" Font="Arial, 7pt"/>
+          <TextObject Name="Text33" Top="41.58" Width="204.12" Height="15.12" IsIntersectedWithOtherObject="true" Text="Total Cupom" WordWrap="false" Font="Arial, 8.5pt, style=Bold"/>
+          <TextObject Name="Text34" Left="203.9" Top="41.58" Width="68.26" Height="15.12" IsIntersectedWithOtherObject="true" Text="[JsonData.Nfce.TotalCupom]" Format="Currency" Format.UseLocale="true" Format.DecimalDigits="2" HorzAlign="Right" WordWrap="false" Font="Arial, 8.5pt, style=Bold"/>
+          <TextObject Name="Text35" Top="60.48" Width="204.12" Height="22.68" IsIntersectedWithOtherObject="true" Text="Tributos Totais Incidentes (Lei Federal 12.741/2012)" Font="Arial, 7pt"/>
+          <TextObject Name="Text36" Left="203.9" Top="60.48" Width="68.26" Height="22.68" IsIntersectedWithOtherObject="true" Text="[JsonData.Nfce.TributosAproximado]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.CurrencySymbol="R$" Format.PositivePattern="2" Format.NegativePattern="9" HorzAlign="Right" WordWrap="false" Font="Arial, 7pt"/>
         </DataFooterBand>
       </DataBand>
       <DataBand Name="DataPagamento" Top="384.99" Width="272.16" Height="13.34" DataSource="Pagamentos">
@@ -190,14 +210,14 @@ namespace FastReport
         <ChildBand Name="Child_Chave" Top="430.12" Width="272.16" Height="22.68" Border.Lines="Top, Bottom" Border.Style="Dot" Border.Width="0.25">
           <TextObject Name="Text43" Top="3.78" Width="272.16" Height="15.12" Text="[JsonData.Nfce.Chave]" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="Arial Narrow, 8pt"/>
           <ChildBand Name="Child_Consumidor" Top="455.47" Width="272.16" Height="49.14" Border.Lines="Bottom" Border.Style="Dot" Border.Width="0.25" CanGrow="true" CanShrink="true" BeforeLayoutEvent="Child_Consumidor_BeforeLayout">
-            <TextObject Name="Text50" Width="272.16" Height="17.12" CanBreak="false" Text="[TituloConsumidor]" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="Arial, 8pt, style=Bold"/>
-            <TextObject Name="Text51" Top="16.9" Width="272.16" Height="11.34" CanGrow="true" CanShrink="true" BeforePrintEvent="Text51_BeforePrint" Text="[JsonData.Nfce.Consumidor.Nome]" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 8pt"/>
+            <TextObject Name="Text50" Width="272.16" Height="17.12" IsIntersectedWithOtherObject="true" CanBreak="false" Text="[TituloConsumidor]" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="Arial, 8pt, style=Bold"/>
+            <TextObject Name="Text51" Top="16.9" Width="272.16" Height="11.34" IsIntersectedWithOtherObject="true" CanGrow="true" CanShrink="true" BeforePrintEvent="Text51_BeforePrint" Text="[JsonData.Nfce.Consumidor.Nome]" HorzAlign="Center" VertAlign="Center" Font="Arial Narrow, 8pt"/>
             <TextObject Name="Text52" Top="28.24" Width="272.16" Height="15.12" CanShrink="true" CanBreak="false" Text="[JsonData.Nfce.Consumidor.CpfCnpj]" HideValue="aa" HorzAlign="Center" VertAlign="Center" WordWrap="false" Font="Arial Narrow, 8pt"/>
             <ChildBand Name="Child_QrCode" Top="507.28" Width="272.16" Height="128.22" BeforeLayoutEvent="Child_QrCode_BeforeLayout">
-              <BarcodeObject Name="QrCode" Top="3.78" Width="109.32" Height="109.32" AutoSize="false" Expression="NormalizaQrCode([JsonData.Nfce.QrCode])" Text="https://nfe.fazenda.gov.br" ShowText="false" AllowExpressions="true" Barcode="QR Code" Barcode.ErrorCorrection="L" Barcode.Encoding="UTF8" Barcode.QuietZone="true"/>
-              <TextObject Name="Text44" Left="113.4" Top="18.9" Width="158.76" Height="13.34" Text="Número: 00001" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.CurrencySymbol="R$" Format.PositivePattern="2" Format.NegativePattern="9" WordWrap="false" Font="Arial, 7.5pt"/>
-              <TextObject Name="Text45" Left="113.4" Top="3.78" Width="158.76" Height="13.34" Text="Série: 001" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.CurrencySymbol="R$" Format.PositivePattern="2" Format.NegativePattern="9" WordWrap="false" Font="Arial, 7.5pt"/>
-              <TextObject Name="Text47" Left="113.4" Top="49.14" Width="158.76" Height="13.34" Text="Protocolo: 1231284921321" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.CurrencySymbol="R$" Format.PositivePattern="2" Format.NegativePattern="9" WordWrap="false" Font="Arial, 7.5pt"/>
+              <BarcodeObject Name="QrCode" Top="3.78" Width="109.32" Height="109.32" AutoSize="false" Expression="[JsonData.Nfce.QrCode]" Text="https://nfe.fazenda.gov.br" ShowText="false" AllowExpressions="true" Barcode="QR Code" Barcode.ErrorCorrection="L" Barcode.Encoding="UTF8" Barcode.QuietZone="true"/>
+              <TextObject Name="Text44" Left="113.4" Top="18.9" Width="158.76" Height="13.34" Text="Número: [JsonData.Nfce.Numero]" Format="Custom" Format.Format="00000000" WordWrap="false" Font="Arial, 7.5pt"/>
+              <TextObject Name="Text45" Left="113.4" Top="3.78" Width="158.76" Height="13.34" Text="Série: [JsonData.Nfce.Serie]" Format="Custom" Format.Format="000" WordWrap="false" Font="Arial, 7.5pt"/>
+              <TextObject Name="Text47" Left="113.4" Top="49.14" Width="158.76" Height="13.34" Text="Protocolo: [JsonData.Nfce.Autorizacao.Protocolo]" Format="Currency" Format.UseLocale="false" Format.DecimalDigits="2" Format.DecimalSeparator="," Format.GroupSeparator="." Format.CurrencySymbol="R$" Format.PositivePattern="2" Format.NegativePattern="9" WordWrap="false" Font="Arial, 7.5pt"/>
               <TextObject Name="Text48" Left="113.4" Top="64.26" Width="158.76" Height="13.34" Text="Autorização: [FormataData([JsonData.Nfce.Autorizacao.DataAutorizacao])]" Format="Custom" Format.Format="dd/MM/yyyy HH:mm" WordWrap="false" Font="Arial, 7.5pt"/>
               <TextObject Name="TextoContigencia" Left="113.4" Top="94.5" Width="158.76" Height="22.68" Text="EMITIDO EM &#13;&#10;CONTINGÊNCIA" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt, style=Bold"/>
               <TextObject Name="Text46" Left="113.4" Top="34.02" Width="158.76" Height="13.34" Text="Emissão: [FormataData([JsonData.Nfce.DataEmissao])]" Format="Custom" Format.Format="dd/MM/yyyy HH:mm" WordWrap="false" Font="Arial, 7.5pt"/>

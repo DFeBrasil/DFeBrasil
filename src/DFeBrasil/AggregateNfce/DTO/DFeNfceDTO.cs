@@ -2,6 +2,8 @@ namespace DFeBrasil.AggregateNfce.DTO;
 
 public record DFeNfceDTO
 {
+    public int Serie { get; set; }
+    public long Numero { get; set; }
     public string Chave { get; set; }
     public string QrCode { get; set; }
     public string UrlChave { get; set; }

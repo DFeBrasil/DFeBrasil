@@ -8,9 +8,11 @@ public static class DadosExemplo
     {
         var dto = new DFeNfceDTO
         {
+            Serie = 55,
+            Numero = 123,
             Chave = "12345678901234567890123456789012345678901234",
-            QrCode = "![CDATA[http://homolog.sefaz.go.gov.br/nfeweb/sites/nfce/danfeNFCe" +
-                     "?p=12345678901234567890123456789012345678901234|2|2|1|a64adcd1eee2a5a8e3f31feb9d4095a9d4d78b72]]",
+            QrCode =
+                "http://homolog.sefaz.go.gov.br/nfeweb/sites/nfce/danfeNFCe?p=12345678901234567890123456789012345678901234|2|2|1|a64adcd1eee2a5a8e3f31feb9d4095a9d4d78b72",
             UrlChave = "http://homolog.sefaz.go.gov.br/nfeweb/sites/nfce/danfeNFCe",
             DataEmissao = DateTimeOffset.Parse("2022-04-17T17:31:26-03:00"),
             QuantidadeItens = 5,
