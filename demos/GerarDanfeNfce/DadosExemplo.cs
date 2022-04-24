@@ -12,7 +12,7 @@ public static class DadosExemplo
             QrCode = "![CDATA[http://homolog.sefaz.go.gov.br/nfeweb/sites/nfce/danfeNFCe" +
                      "?p=12345678901234567890123456789012345678901234|2|2|1|a64adcd1eee2a5a8e3f31feb9d4095a9d4d78b72]]",
             UrlChave = "http://homolog.sefaz.go.gov.br/nfeweb/sites/nfce/danfeNFCe",
-            DataEmissao = DateTime.UtcNow,
+            DataEmissao = DateTimeOffset.Parse("2022-04-17T17:31:26-03:00"),
             QuantidadeItens = 5,
             TotalDesconto = 30.00M,
             TotalOutros = 150.00M,
@@ -21,7 +21,7 @@ public static class DadosExemplo
             EhHomologacao = true,
             EhContingencia = true,
             Consumidor = new("21025760000123", "AGIL4 TECNOLOGIA"),
-            Autorizacao = new(DateTime.UtcNow, "12394219031231"),
+            Autorizacao = new(DateTimeOffset.Parse("2022-04-14T14:06:54-03:00"), "12394219031231"),
             Emitente = new(
                 "AGIL4 TECNOLOGIA LTDA ME",
                 "AGIL4",
