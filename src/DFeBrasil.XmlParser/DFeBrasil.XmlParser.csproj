@@ -1,15 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <PackageId>DFeBarsil.XmlParser</PackageId>
-        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <TargetFramework>netstandard2.1</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>disable</Nullable>
+        <PackageId>DFeBrasil.XmlParser</PackageId>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DFeBrasil\DFeBrasil.csproj" />
+        <ProjectReference Include="..\DFeBrasil\DFeBrasil.csproj"/>
     </ItemGroup>
 
 </Project>
