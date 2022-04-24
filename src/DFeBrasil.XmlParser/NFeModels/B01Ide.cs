@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Xml.Serialization;
 
 namespace DFeBrasil.XmlParser.NFeModels;
@@ -26,11 +27,20 @@ public class B01Ide
     [XmlElement("nNF")]
     public long Numero { get; set; }
 
+    [XmlIgnore]
+    public DateTimeOffset DhEmi =>
+        DateTimeOffset.ParseExact(DhEmiString, "yyyy-MM-ddTHH:mm:sszzz", CultureInfo.InvariantCulture);
+
     [XmlElement("dhEmi")]
-    public DateTimeOffset DhEmi { get; set; }
+    public string DhEmiString { get; set; }
+
+    [XmlIgnore]
+    public DateTimeOffset? DhSaiEnt => DhSaiEntString is not null
+        ? DateTimeOffset.ParseExact(DhSaiEntString, "yyyy-MM-ddTHH:mm:sszzz", CultureInfo.InvariantCulture)
+        : null;
 
     [XmlElement("dhSaiEnt", IsNullable = true)]
-    public DateTimeOffset? DhSaiEnt { get; set; }
+    public string DhSaiEntString { get; set; }
 
     [XmlElement("tpNF")]
     public int TipoNF { get; set; }
@@ -71,8 +81,13 @@ public class B01Ide
     [XmlElement("verProc")]
     public string VerProc { get; set; }
 
+    [XmlIgnore]
+    public DateTimeOffset? DhCont => DhContString is not null
+        ? DateTimeOffset.ParseExact(DhContString, "yyyy-MM-ddTHH:mm:sszzz", CultureInfo.InvariantCulture)
+        : null;
+
     [XmlElement("dhCont", IsNullable = true)]
-    public DateTimeOffset? DhCont { get; set; }
+    public string DhContString { get; set; }
 
     [XmlElement("xJust", IsNullable = true)]
     public string JustCont { get; set; }

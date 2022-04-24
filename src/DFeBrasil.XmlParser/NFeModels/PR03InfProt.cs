@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Xml.Serialization;
 
 namespace DFeBrasil.XmlParser.NFeModels;
@@ -14,8 +15,12 @@ public record PR03InfProt
     [XmlElement("chNFe")]
     public string ChNFe { get; set; }
 
+    [XmlIgnore]
+    public DateTimeOffset DhRecbto =>
+        DateTimeOffset.ParseExact(DhRecbtoString, "yyyy-MM-ddTHH:mm:sszzz", CultureInfo.InvariantCulture);
+
     [XmlElement("dhRecbto")]
-    public DateTimeOffset DhRecbto { get; set; }
+    public string DhRecbtoString { get; set; }
 
     [XmlElement("nProt")]
     public string Prot { get; set; }

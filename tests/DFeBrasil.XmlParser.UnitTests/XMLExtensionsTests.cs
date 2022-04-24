@@ -35,17 +35,16 @@ public class XMLExtensionsTests
         var dto = nfeProc.ConverteParaNfceDTO();
 
         // Assert
+        var expedQrCode =
+            "http://homolog.sefaz.go.gov.br/nfeweb/sites/nfce/danfeNFCe?p=12345678901234567890123456789012345678901234|2|2|1|2e2ebbb42c03ccb75ab6fe9c6a07058e8a7c13e9";
+
         Assert.Equal(44, dto.Serie);
         Assert.Equal(4444, dto.Numero);
         Assert.Equal("12345678901234567890123456789012345678901234", dto.Chave);
-        Assert.Equal(
-            "http://homolog.sefaz.go.gov.br/nfeweb/sites/nfce/danfeNFCe?p=12345678901234567890123456789012345678901234|2|2|1|2e2ebbb42c03ccb75ab6fe9c6a07058e8a7c13e9",
-            dto.QrCode
-        );
-
         Assert.Equal(50M, dto.TotalDesconto);
         Assert.Equal(15M, dto.TotalOutros);
         Assert.Equal(1404.98M, dto.TotalCupom);
+        Assert.Equal(expedQrCode, dto.QrCode);
     }
 
     [Fact]
