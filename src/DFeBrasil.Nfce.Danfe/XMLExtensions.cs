@@ -8,7 +8,7 @@ namespace DFeBrasil.Nfce.Danfe;
 
 public static class XMLExtensions
 {
-    public static DFeNfceDTO ToDFeNfceDTO(this XR01NFeProc nfeProc)
+    public static DFeNfceDTO ConverteParaNfceDTO(this XR01NFeProc nfeProc)
     {
         var model = new DFeNfceDTO
         {
@@ -23,10 +23,10 @@ public static class XMLExtensions
             EhContingencia = nfeProc.NFe.InfNFe.Ide.TpEmis == 9,
             EhHomologacao = nfeProc.NFe.InfNFe.Ide.TpAmb == 2,
             Emitente = ConvertEmit(nfeProc.NFe.InfNFe.Emit),
-            Consumidor = ConvertDest(nfeProc.NFe.InfNFe.Dest),
+            Consumidor = ConverteDest(nfeProc.NFe.InfNFe.Dest),
             QuantidadeItens = nfeProc.NFe.InfNFe.Det.Count,
-            Itens = ConvertDet(nfeProc.NFe.InfNFe.Det),
-            Pagamentos = ConvertPag(nfeProc.NFe.InfNFe.Pag),
+            Itens = ConverteDet(nfeProc.NFe.InfNFe.Det),
+            Pagamentos = ConvertePag(nfeProc.NFe.InfNFe.Pag),
             Autorizacao = new(
                 nfeProc.ProtNFe.InfProt.DhRecbto,
                 nfeProc.ProtNFe.InfProt.Prot
@@ -61,7 +61,7 @@ public static class XMLExtensions
         );
     }
 
-    private static DFeNfceConsumidorDTO ConvertDest(E01Dest dest)
+    private static DFeNfceConsumidorDTO ConverteDest(E01Dest dest)
     {
         if (dest == null) return null;
         var documento = dest.CPF ?? dest.CNPJ;
@@ -69,7 +69,7 @@ public static class XMLExtensions
         return new(documento, dest.Nome ?? string.Empty);
     }
 
-    private static IEnumerable<DFeNfceItemDTO> ConvertDet(IEnumerable<H01Det> det)
+    private static IEnumerable<DFeNfceItemDTO> ConverteDet(IEnumerable<H01Det> det)
     {
         return det.Select(i => new DFeNfceItemDTO(
                 i.NumItem,
@@ -81,7 +81,7 @@ public static class XMLExtensions
         );
     }
 
-    private static IEnumerable<DFeNfcePagamentoDTO> ConvertPag(YA01Pag pag)
+    private static IEnumerable<DFeNfcePagamentoDTO> ConvertePag(YA01Pag pag)
     {
         return pag?.DetPag?.Select(i =>
             {

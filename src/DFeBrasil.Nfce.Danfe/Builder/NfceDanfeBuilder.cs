@@ -29,7 +29,7 @@ public class NfceDanfeBuilder :
     public IBuild ComStringXML(string xmlString, bool cancelada = false)
     {
         var xNFe = NFeParser.ParseText(xmlString);
-        _dto = xNFe.ToDFeNfceDTO();
+        _dto = xNFe.ConverteParaNfceDTO();
         _dto.Cancelada = cancelada;
 
         return this;

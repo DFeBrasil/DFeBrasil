@@ -58,7 +58,7 @@ public class NfceDanfeBuilderTests
         // Arrange
         var xmlString = ResourcesFixtures.ObterRsource("fake-nfce-cpf-dest.xml");
         var nfeProc = NFeParser.ParseText(xmlString);
-        var nfce = nfeProc.ToDFeNfceDTO();
+        var nfce = nfeProc.ConverteParaNfceDTO();
 
         // Act
         var nfceDanfe = NfceDanfeBuilder.Configurar()
