@@ -4,7 +4,7 @@ using DFeBrasil.AggregateNfce.DTO;
 
 namespace DFeBrasil.Nfce.Danfe.UnitTests.Fixtures;
 
-public static class NfceFixtures
+public static class DanfeFixtures
 {
     public static DFeNfceDTO ObterNfce(
         DFeNfceConsumidorDTO? consumidor = null,
@@ -14,11 +14,12 @@ public static class NfceFixtures
     {
         var dto = new DFeNfceDTO
         {
+            Serie = 3,
+            Numero = 563,
             Chave = "12345678901234567890123456789012345678901234",
-            QrCode = "![CDATA[http://homolog.sefaz.go.gov.br/nfeweb/sites/nfce/danfeNFCe" +
-                     "?p=12345678901234567890123456789012345678901234|2|2|1|a64adcd1eee2a5a8e3f31feb9d4095a9d4d78b72]]",
+            QrCode = "http://homolog.sefaz.go.gov.br/nfeweb/sites/nfce/danfeNFCe?p=12345678901234567890123456789012345678901234|2|2|1|a64adcd1eee2a5a8e3f31feb9d4095a9d4d78b72",
             UrlChave = "http://homolog.sefaz.go.gov.br/nfeweb/sites/nfce/danfeNFCe",
-            DataEmissao = DateTime.UtcNow,
+            DataEmissao = DateTimeOffset.Now,
             QuantidadeItens = 5,
             TotalDesconto = 30.00M,
             TotalOutros = 150.00M,
@@ -28,7 +29,7 @@ public static class NfceFixtures
             EhContingencia = emContingencia,
             Cancelada = cancealda,
             Consumidor = consumidor!,
-            Autorizacao = new(DateTime.UtcNow, "12394219031231"),
+            Autorizacao = new(DateTimeOffset.Now, "12394219031231"),
             Emitente = new(
                 "AGIL4 TECNOLOGIA LTDA ME",
                 "AGIL4",

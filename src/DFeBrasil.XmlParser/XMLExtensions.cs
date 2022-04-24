@@ -4,7 +4,7 @@ using DFeBrasil.Comum;
 using DFeBrasil.XmlParser.NFeModels;
 using EnumsNET;
 
-namespace DFeBrasil.Nfce.Danfe;
+namespace DFeBrasil.XmlParser;
 
 public static class XMLExtensions
 {
@@ -12,6 +12,8 @@ public static class XMLExtensions
     {
         var model = new DFeNfceDTO
         {
+            Serie = nfeProc.NFe.InfNFe.Ide.Serie,
+            Numero = nfeProc.NFe.InfNFe.Ide.Numero,
             Chave = nfeProc.ProtNFe.InfProt.ChNFe,
             DataEmissao = nfeProc.NFe.InfNFe.Ide.DhEmi,
             QrCode = nfeProc.NFe.InfNFeSupl.QrCode,

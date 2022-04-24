@@ -4,7 +4,7 @@ using DFeBrasil.XmlParser;
 namespace DFeBrasil.Nfce.Danfe.Builder;
 
 public class NfceDanfeBuilder :
-    IWorkFlowData,
+    IWorkFlowInicio,
     IBuild
 {
     private DFeNfceDTO _dto;
@@ -14,7 +14,7 @@ public class NfceDanfeBuilder :
         _dto = new();
     }
 
-    public static IWorkFlowData Configurar()
+    public static IWorkFlowInicio Configurar()
     {
         return new NfceDanfeBuilder();
     }

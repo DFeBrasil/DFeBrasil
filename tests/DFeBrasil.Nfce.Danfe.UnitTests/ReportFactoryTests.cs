@@ -10,12 +10,12 @@ public class ReportFactoryTests
     public void CriarDanfe80_ComNfce_ConfiguraJsonDataSource()
     {
         // Arrange
-        var nfce = NfceFixtures.ObterNfce();
+        var nfce = DanfeFixtures.ObterNfce();
 
         // Act
         using var report = ReportFactory.CriarDanfe80(nfce);
 
-        //
+        // Assert
         Assert.IsType<JsonDataSourceConnection>(report.Dictionary.Connections[0]);
         Assert.Equal("JsonConnection", report.Dictionary.Connections[0].Name);
     }

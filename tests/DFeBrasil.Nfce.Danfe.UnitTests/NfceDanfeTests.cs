@@ -10,7 +10,7 @@ public class NfceDanfeTests
     public void Exportar_ComConsumidor_RetornaStream()
     {
         // Arrange
-        var nfce = NfceFixtures.ObterComConsumidor();
+        var nfce = DanfeFixtures.ObterComConsumidor();
         var danfe = new NfceDanfe(nfce);
         using var memoryStream = new MemoryStream();
 
@@ -25,7 +25,7 @@ public class NfceDanfeTests
     public void Exportar_ComCancelamento_RetornaStream()
     {
         // Arrange
-        var nfce = NfceFixtures.ObterNfce(cancealda: true);
+        var nfce = DanfeFixtures.ObterNfce(cancealda: true);
         var danfe = new NfceDanfe(nfce);
         using var memoryStream = new MemoryStream();
 
@@ -40,7 +40,7 @@ public class NfceDanfeTests
     public void Exportar_ComContingencia_RetornaStream()
     {
         // Arrange
-        var nfce = NfceFixtures.ObterEmContingencia();
+        var nfce = DanfeFixtures.ObterEmContingencia();
         var danfe = new NfceDanfe(nfce);
         using var memoryStream = new MemoryStream();
 
@@ -55,7 +55,7 @@ public class NfceDanfeTests
     public void Exportar_ComModeloBasico_RetornaStream()
     {
         // Arrange
-        var nfce = NfceFixtures.ObterNfce();
+        var nfce = DanfeFixtures.ObterNfce();
         var danfe = new NfceDanfe(nfce);
         using var memoryStream = new MemoryStream();
 
@@ -70,7 +70,7 @@ public class NfceDanfeTests
     public void Exportar_ComFileName_CriaArquivoNoDisco()
     {
         // Arrange
-        var nfce = NfceFixtures.ObterComConsumidor();
+        var nfce = DanfeFixtures.ObterComConsumidor();
         var danfe = new NfceDanfe(nfce);
         var arquivoEsperado = Path.GetTempFileName();
 

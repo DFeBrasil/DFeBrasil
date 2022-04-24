@@ -8,4 +8,8 @@
         <Nullable>disable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\DFeBrasil\DFeBrasil.csproj" />
+    </ItemGroup>
+
 </Project>
